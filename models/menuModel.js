@@ -1,4 +1,4 @@
-const mongoose = request('mongoose')
+const mongoose = require('mongoose')
 
 const menuSchema = mongoose.Schema({
     name:{
@@ -10,7 +10,7 @@ const menuSchema = mongoose.Schema({
         required: [true, 'Please enter type']
     },
     price: {
-        type: Int32,
+        type: Number,
         required: [true, 'Please enter price']
     },
     available: {
@@ -18,7 +18,7 @@ const menuSchema = mongoose.Schema({
         required: [true, 'Please enter availability']
     },
     servingSize: {
-        type: Int32
+        type: Number
     }
 })
 

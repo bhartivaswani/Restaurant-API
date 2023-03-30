@@ -1,4 +1,4 @@
-const mongoose = request('mongoose')
+const mongoose = require('mongoose')
 
 const orderSchema = mongoose.Schema({
     userId: {
@@ -16,11 +16,11 @@ const orderSchema = mongoose.Schema({
                 required: [true, 'Please enter type']
             },
             quantity: {
-                type: Int32,
+                type: Number,
                 required: [true, 'Please enter type']
             },
             price: {
-                type: Int32,
+                type: Number,
                 required: [true, 'Please enter type']
             },
         }
@@ -30,7 +30,7 @@ const orderSchema = mongoose.Schema({
         required: [true, 'Please enter type']
     },
     price: {
-        type: Int32,
+        type: Number,
         required: [true, 'Please enter type']
     },
     paymentMethod: {
