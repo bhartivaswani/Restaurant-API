@@ -12,6 +12,7 @@ connectDB()
 
 const app = express()
 
+app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/api/user', require('./routes/userRoutes'))
 app.use('/api/order', require('./routes/orderRoutes'))

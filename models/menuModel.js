@@ -3,19 +3,20 @@ const mongoose = require('mongoose')
 const menuSchema = mongoose.Schema({
     name:{
         type: String,
-        required: [true, 'Please enter name']
+        required: true,
+        unique: true
     },
     type:{
         type: String,
-        required: [true, 'Please enter type']
+        required: true
     },
     price: {
         type: Number,
-        required: [true, 'Please enter price']
+        required: true
     },
     available: {
         type: Boolean,
-        required: [true, 'Please enter availability']
+        required: true
     },
     servingSize: {
         type: Number
