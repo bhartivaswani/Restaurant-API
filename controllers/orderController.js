@@ -1,8 +1,6 @@
 const asyncHandler = require("express-async-handler");
 
-const User = require("../models/userModel");
 const Order = require("../models/orderModel");
-const Menu = require("../models/menuModel");
 
 // @desc Get Order by user id
 // @route GET /api/order/:id
@@ -27,6 +25,8 @@ const getOrder = asyncHandler(async (req, res) => {
 // @route POST /api/order
 // @access Public
 const placeOrder = asyncHandler(async (req, res) => {
+  console.log(req.body);
+
   if (
     req.body.userId === undefined ||
     req.body.orderStatus === undefined ||
@@ -38,9 +38,23 @@ const placeOrder = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Incomplete request");
   }
-
-  const menu = await Menu.create(res.body);
-  res.status(201).json(menu);
+  const temp = {
+    userId: req.body.userId,
+    orderStatus: req.body.orderStatus,
+    address: req.body.address,
+    price: req.body.price,
+    paymentMethod: req.body.paymentMethod,
+    paymentStatus: req.body.paymentStatus,
+    order: [
+      {
+        name: req.body.ordername,
+        price: req.body.orderprice,
+        quantity: req.body.orderquantity,
+      },
+    ],
+  };
+  const order = await Order.create(temp);
+  res.status(201).json(order);
 });
 
 // @desc Deleting an order

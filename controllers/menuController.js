@@ -20,9 +20,7 @@ const updateItem = asyncHandler(async (req, res) => {
     throw new Error("Item not found");
   }
 
-  const updatedItem = await Menu.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+  const updatedItem = await Menu.findByIdAndUpdate(req.params.id, req.body);
   res.status(200).json(updatedItem);
 });
 
