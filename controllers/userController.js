@@ -44,7 +44,16 @@ const updateUser = asyncHandler( async (req,res) => {
 // @route DELETE /api/user/:id
 // @access Public
 const deleteUser = asyncHandler( async (req,res) => {
-
+    const {email, password}=req.body;
+    const user=users.find(user=>user.email===email && user.password===password);
+    if(!user){
+        res.status(401).json({message: 'Invalid Credentials'});
+    }
+    else{
+        users.splice(users.indexOf(user),1);
+        res.json({userId:user.id});
+    }
+    return res.json({message: 'Account Deleted Successfully'});
 })
 
 module.exports = {
