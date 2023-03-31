@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { login, signup, updateUser, deleteUser } = require('../controllers/userController')
 
-router.post('/post', login)
+router.post('/login', login)
 
 router.put('/:id', updateUser)
 
