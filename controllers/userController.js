@@ -37,7 +37,16 @@ const signup = asyncHandler( async (req,res) => {
 // @route PUT /api/user/:id
 // @access Public
 const updateUser = asyncHandler( async (req,res) => {
-
+     const {email, oldpassword, newpassword}=req.body;
+     const user=users.find(user=>user.email===email && user.password===oldpassword);
+     if(!user){
+        res.status(401).json({message: 'Invalid Credentials'});
+     }
+    else{
+        user.password= newpassword;
+        res.json({userId:user.id});
+    }
+    return res.json({message: 'Password Changed Successfully'});
 })
 
 // @desc Delete User
