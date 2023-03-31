@@ -21,7 +21,16 @@ const login = asyncHandler( async (req,res) => {
 // @route POST /api/user/signup
 // @access Public
 const signup = asyncHandler( async (req,res) => {
-
+    const {name, email, contactno, password}=req.body;
+    //To check if user already exists
+    const userExists=users.find(user=>user.contactno===contactno || user.email===email);
+    if(userExists){
+        return res.status(409).json({ message: 'User already exists'});
+    }
+    //Creating new user
+    const newUser={name, email, contactno, password};
+    users.push(newUser);
+    return res.json({message: 'User account created successfully'});
 })
 
 // @desc Update user information
