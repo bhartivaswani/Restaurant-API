@@ -8,7 +8,13 @@ const Menu = require('../models/menuModel')
 // @route POST /api/user/login
 // @access Public
 const login = asyncHandler( async (req,res) => {
-    
+    const {email,password}=req.body;
+    //check if user exists
+    const user=users.find(user=>user.email===email && user.password===password);
+    if(!user){
+        return res.status(401).json({message:'Invalid email or password'});
+    }
+    return res.json({ message: 'Login successful'});
 })
 
 // @desc User Singup
